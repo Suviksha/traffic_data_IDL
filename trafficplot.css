@@ -1,0 +1,31 @@
+body {
+  font: 14px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+.lines{
+	stroke:black;
+	stroke-width:5;
+}
+
+.point {
+  stroke: none;
+}
+.tick text{
+    font-size: 12px;
+	opacity : 1;
+}
+
+.tick line{
+    opacity: 1;
+	color : black ;
+}
+#dropdown {
+            margin-bottom: 20px;
+            margin-right: 35px;
+}
