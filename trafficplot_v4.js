@@ -1,20 +1,20 @@
 function scatterplot(){
 	var margin = {top: 20, right: 30, bottom: 30, left: 60},
-    width = 1360 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+            width = 1360 - margin.left - margin.right,
+            height = 600 - margin.top - margin.bottom;
 	
 	var x = d3.scalePoint()
 	        .range([0,width]);
 			 
 	var y = d3.scaleLinear()
-            .range([height, 0]);
+                  .range([height, 0]);
 			
 	
 	var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 	
 	
 		
@@ -22,10 +22,10 @@ function scatterplot(){
 	//Load csv and define values.route=Array of every row.
     d3.csv("Mumbai_traffic_sec.csv").then( function( data) { 	
 	        var route=[];
-            d3.map(data,function(d){
-				 route.push(d);
-                 d.start_end_address=d["star_end_address"];
-				 d.index=+d["index"];
+                d3.map(data,function(d){
+		   route.push(d);
+                d.start_end_address=d["star_end_address"];
+	        d.index=+d["index"];
                  
 				 
 		
@@ -58,7 +58,7 @@ for(item_max of days_of_week_max){
 
 
 
-//calculate.	
+//calculate domain.	
 x.domain(days_of_week);
 y.domain(d3.extent(route_avg)).nice();
 
@@ -67,29 +67,29 @@ y.domain(d3.extent(route_avg)).nice();
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .text("days_of_week")
-	  .call(d3.axisBottom().scale(x).tickPadding(10).tickArguments(11))
-	  .append("text")
+      .call(d3.axisBottom().scale(x).tickPadding(10).tickArguments(11))
+      .append("text")
       .attr("class", "label")
       .attr("x", width)
       .attr("y", -6)
       .style("text-anchor", "end")
-	  .style("opacity",1)
-	  .style("fill","black")
+      .style("opacity",1)
+      .style("fill","black")
       .text(" days_of_week ");
 
   // Add the y-axis.
   svg.append("g")
       .attr("class", "y axis")
-	  .text("traffic_duration")
+      .text("traffic_duration")
       .call(d3.axisLeft().scale(y).tickPadding(10).tickArguments(11))
-	  .append("text")
+      .append("text")
       .attr("class", "label1")
       .attr("transform", "rotate(-90)")
-	  .attr("y", 6)
-	  .style("opacity",1)
+      .attr("y", 6)
+      .style("opacity",1)
       .attr("dy", ".50em")
       .style("text-anchor", "end")
-	  .style("fill","black")
+      .style("fill","black")
       .text("traffic_duration")	;		
 
 
@@ -102,10 +102,10 @@ function makeGrid(){
   svg.append("g")			
       .attr("class", "grid")
       .call(makeGrid().tickSizeInner(-height).tickFormat(" "))
-	  .style("fill","none")
-	  .style("stroke","gray")
-	  .style("stroke-width",0.5)
-	  .style("opacity",0.3);	  
+      .style("fill","none")
+      .style("stroke","gray")
+      .style("stroke-width",0.5)
+      .style("opacity",0.3);	  
 	
 	
 
@@ -221,8 +221,8 @@ d3.select("#dropdown")
 		   console.log(r);
 		   y.domain(d3.extent(r)).nice();
 		   var t=d3.transition().duration(1000).delay(250).ease(d3.easeLinear);
-	       d3.selectAll(".y").call(d3.axisLeft().scale(y).tickPadding(10).tickArguments(11));
-		   d3.selectAll(".traffic_min").transition(t).attr("cy",function(d,i){return y(route_min[i])});
+	           d3.selectAll(".y").call(d3.axisLeft().scale(y).tickPadding(10).tickArguments(11));
+		   d3.selectAll(".traffic_min").transition(t).attr("cy",function(d,i){return y(route_min[i])}); //how to select single   elements?
 		   d3.selectAll(".traffic_min").transition(t).style("opacity",1);
 		   d3.selectAll(".traffic_max").transition(t).attr("cy",function(d,i){return y(route_max[i])});
 		   d3.selectAll(".traffic_max").transition(t).style("opacity",1);
